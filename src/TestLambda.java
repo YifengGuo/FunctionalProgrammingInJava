@@ -95,6 +95,15 @@ public class TestLambda {
         consumer.accept("\nCustomized Functional Interface.");
 
 
+        /**
+         * Differences between lambda expression and anonymous class:
+         *     1. Anonymous class is still a class. Although it does not have a name, the compiler will give it a name
+         *        when compiling. And it will create a .class file
+         *     2. Lambda will NOT produce a .class file at any time. Acutally the lambda expression will become a
+         *        private method of main class and being invoked by invokedynamic instruction in JVM. So in fact, when
+         *        using "this" in lambda expression, it simply refers to the class itself.
+         */
+
 
     }
     /**
