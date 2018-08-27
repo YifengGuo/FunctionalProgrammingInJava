@@ -221,9 +221,10 @@ public class JavaStream {
         Student s4 = new Student("Kelly", 65.0);
         Student s5 = new Student("Jerry", 95.0);
         Student s6 = new Student("Andrew", 56.0);
+        // Function.identity() is a static method in this interface. It means t -> t (returning the original input)
         Map<Student, Double> studentGPAMap = Stream.of(s1, s2, s3, s4, s5, s6)
                 .collect(Collectors.toMap(
-                        Function.identity(), // key of map
+                        Function.identity(), // key of map, the original input Student object
                         student -> computeGPA(student) // value of map
                 ));
         studentGPAMap.forEach((k, v) -> System.out.println("Student " + k.name + "'s GPA is " + v ));
