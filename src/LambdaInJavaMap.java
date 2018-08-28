@@ -135,7 +135,7 @@ public class LambdaInJavaMap {
         Map<String, LinkedHashSet<Integer>> testCompute = new HashMap<>();
         int primeNumber1 = 1;
         int primeNumber2 = 3;
-        testCompute.compute("primeNumber", (k, v) -> {
+        testCompute.compute("primeNumber", (k, v) -> { // prefer to use this way for more readability
             if (v == null) {
                 v = new LinkedHashSet<>();
             }
@@ -143,7 +143,9 @@ public class LambdaInJavaMap {
             return v;
         });
         // when k is null, create a new linkedhashset, return this set and then add value
-        testCompute.computeIfAbsent("primeNumber", k -> new LinkedHashSet<>()).add(primeNumber2);
+        testCompute.computeIfAbsent("primeNumber", v -> new LinkedHashSet<>()).add(primeNumber1);
+        testCompute.computeIfAbsent("primeNumber", v -> new LinkedHashSet<>()).add(primeNumber2);
+
         System.out.println(testCompute.get("primeNumber"));
     }
 }
