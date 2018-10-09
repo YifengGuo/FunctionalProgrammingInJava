@@ -151,7 +151,7 @@ public class JavaStream {
 
         /**
          * Steps to convert a Stream to a container(Map, List...)
-         *  1. What is the type of target container? Hashset, ArrayList, HashMap ?
+         *  1. What is the type of target container? HashSet, ArrayList, HashMap ?
          *  2. How to add new element to the container? map.put(), list.add() ?
          *  3. What if under multi-thread condition, how to merge two partial collectors ?
          *
@@ -206,7 +206,7 @@ public class JavaStream {
         /**
          * example 3: generate Map via collect()
          * Stream cannot be built from a Map but Stream can be converted to a Map by collect()
-         * What to case is Key and Value
+         * What to need to focus is Key and Value
          * 3 ways to get Map from Steam: collect(Collector)
          *     1. Collector Collectors.toMap()   user to define key and value
          *     2. Collector Collectors.partitioningBy()
@@ -255,6 +255,7 @@ public class JavaStream {
         Employee e5 = new Employee("Jerry", "Tech");
         Employee e6 = new Employee("Andrew", "Management");
         List<Employee> employees = Arrays.asList(e1, e2, e3, e4, e5, e6);
+        System.out.print("\n");
         Map<String, List<Employee>> employeeByDepartment = employees.stream()
                 .collect(Collectors.groupingBy(
                         Employee::getDepartment // map(group) elements by a field of it
@@ -266,14 +267,36 @@ public class JavaStream {
 
         // case 3: get the employee count of each department
         // the logic is like SQL query
+        System.out.print("\n");
+        // method signature of groupingBy():
+        // static <T, K, A, D> Collector<T, ?, Map<K, D>> groupingBy(Function<? super T, ? extends K> classifier, Collector<? super T, A, D> downstream)
         Map<String, Long> deptCountMap = employees.stream()
-                .collect(Collectors.groupingBy(
-                        Employee::getDepartment, // upstream Collector
+                .collect(Collectors.groupingBy(  // upstream Collector
+                        Employee::getDepartment,  // Employee::getDepartment is like a classifier
                         Collectors.counting() // downstream Collector
                 ));
         deptCountMap.forEach((k, v) -> {
             System.out.println("Department " + k + " has " + v + " people.");
         });
+
+
+        // case 4: group the employees by their department and only keep their names
+        System.out.print("\n");
+        Map<String, List<String>> deptAndNames = employees.stream()
+                .collect(Collectors.groupingBy(Employee::getDepartment, // upstream collector
+                        Collectors.mapping(Employee::getName,  // downstream collector   Employee::getName is the mapper of mapping() method
+                                Collectors.toList())));        // further downstream collector    collect employees' names of department into a list
+        deptAndNames.forEach((k, v) -> {
+            System.out.println("Department " + k + " has employees: ");
+            printCollection(v);
+        });
+        System.out.print("\n");
+
+
+        // addition: Collectors.joining() to concatenate strings
+        Stream<String> joiningStringStream = Stream.of("This", "is", "joining", "demo");
+        String joiningRes = joiningStringStream.collect(Collectors.joining(" "));
+        System.out.println(joiningRes);
 
     }
 

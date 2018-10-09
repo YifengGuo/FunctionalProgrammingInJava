@@ -46,7 +46,7 @@ public class LambdaInJavaCollection {
         /**
          * 2. removeIf()
          * boolean removeIf(Predicate<? super E> filter)
-         * interdace Predicate has only one abstract method boolean test(T t)
+         * interface Predicate has only one abstract method boolean test(T t)
          * removeIf is to remove all the elements which satisfy filter condition
          *
          * remove all the elements in list whose length >= 3
@@ -152,6 +152,14 @@ public class LambdaInJavaCollection {
         List<String> sort2 = new ArrayList<>(Arrays.asList("I", "love", "you", "too"));
         sort2.sort((s1, s2) -> s1.length() - s2.length());
         for (String s : sort2) {
+            System.out.print(s + " ");
+        }
+        System.out.print("\n");
+
+        // use Comparator method invoking
+        List<String> sort3 = new ArrayList<>(Arrays.asList("I", "love", "you", "too"));
+        sort3.sort(Comparator.comparingInt(String::length));
+        for (String s : sort3) {
             System.out.print(s + " ");
         }
         System.out.print("\n");
