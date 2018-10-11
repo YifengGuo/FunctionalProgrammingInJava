@@ -298,6 +298,12 @@ public class JavaStream {
         String joiningRes = joiningStringStream.collect(Collectors.joining(" "));
         System.out.println(joiningRes);
 
+        Stream<String> joiningStringStream2 = Stream.of("1", "2", "3", "4");
+        // with [ and ] and prefix and suffix
+        String joiningRes2 = joiningStringStream2.collect(Collectors.joining(",", "[", "]"));
+        System.out.println(joiningRes2);
+
+
     }
 
     private static <T> void printCollection(Collection<? extends T> collection) {
