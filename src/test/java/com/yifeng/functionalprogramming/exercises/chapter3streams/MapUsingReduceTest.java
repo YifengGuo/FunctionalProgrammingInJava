@@ -1,4 +1,5 @@
-import com.yifeng.functionalprogramming.exercises.chapter3streams.MapUsingReduce;
+package com.yifeng.functionalprogramming.exercises.chapter3streams;
+
 import org.junit.Test;
 
 import java.util.List;

@@ -1,10 +1,6 @@
-import com.yifeng.functionalprogramming.exercises.chapter3streams.Album;
-import com.yifeng.functionalprogramming.exercises.chapter3streams.Artist;
-import com.yifeng.functionalprogramming.exercises.chapter3streams.Q1StreamImplementations;
-import com.yifeng.functionalprogramming.exercises.chapter3streams.Track;
+package com.yifeng.functionalprogramming.exercises.chapter3streams;
+
 import org.junit.Assert;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.ArrayList;

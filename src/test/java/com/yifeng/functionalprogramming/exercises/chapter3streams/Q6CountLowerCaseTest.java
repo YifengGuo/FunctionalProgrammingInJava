@@ -1,4 +1,5 @@
-import com.yifeng.functionalprogramming.exercises.chapter3streams.Q6CountLowerCase;
+package com.yifeng.functionalprogramming.exercises.chapter3streams;
+
 import org.junit.Assert;
 import org.junit.Test;
 
