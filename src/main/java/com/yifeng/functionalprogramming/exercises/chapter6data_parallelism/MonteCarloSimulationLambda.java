@@ -16,7 +16,7 @@ public class MonteCarloSimulationLambda {
             .parallel()
             .mapToObj(n -> twoDiceThrows())
             .collect(groupingBy(side -> side, // dice value
-                    summingDouble(n -> fraction)));  // probabilities sum
+                    summingDouble(twoDiceSum -> fraction)));  // probabilities sum
     }
 
     private static Integer twoDiceThrows() {
